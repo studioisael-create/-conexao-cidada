@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>Conexão Cidadã</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#2563eb;
+  --primary2:#7c3aed;--border:#e5e7eb;--shadow:0 10px 30px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+body.dark{--bg:#0b1220;--card:#121a2a;--text:#eef2ff;--muted:#aab4c5;--border:#263249;--shadow:0 10px 30px rgba(0,0,0,.25)}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.container{width:min(1100px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.dark header{background:rgba(11,18,32,.88)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;font-size:20px;display:flex;align-items:center;gap:9px}
+.logo span{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white}
+.menu{display:flex;gap:24px;align-items:center}
+.menu a{font-size:14px;font-weight:700;color:var(--muted)}
+.menu a:hover{color:var(--primary)}
+.actions{display:flex;gap:8px}
+.icon-btn,.menu-btn{border:1px solid var(--border);background:var(--card);color:var(--text);width:40px;height:40px;border-radius:12px;cursor:pointer}
+.menu-btn{display:none}
+.hero{padding:65px 0 50px;background:radial-gradient(circle at 85% 20%,rgba(124,58,237,.18),transparent 35%),radial-gradient(circle at 10% 40%,rgba(37,99,235,.15),transparent 35%)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
+.badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:rgba(37,99,235,.1);color:var(--primary);font-size:13px;font-weight:800;margin-bottom:16px}
+h1{font-size:clamp(40px,7vw,68px);line-height:1.02;letter-spacing:-2.5px;margin-bottom:20px}
+.gradient{background:linear-gradient(90deg,var(--primary),var(--primary2));-webkit-background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:650px}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:26px;box-shadow:var(--shadow)}
+.hero-card .big-icon{font-size:62px;margin-bottom:10px}
+.hero-card h3{font-size:23px;margin-bottom:7px}
+.hero-card p{font-size:14px}
+.section{padding:65px 0}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:28px}
+.eyebrow{color:var(--primary);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+h2{font-size:clamp(28px,5vw,40px);line-height:1.1;margin-top:6px}
+.section-head p{color:var(--muted);max-width:500px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:24px;box-shadow:var(--shadow);transition:.2s}
+.card:hover{transform:translateY(-3px)}
+.card-icon{font-size:36px;margin-bottom:15px}
+.card h3{font-size:21px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.tag{display:inline-block;margin-top:17px;font-size:12px;font-weight:800;color:var(--primary);background:rgba(37,99,235,.09);padding:6px 9px;border-radius:8px}
+.article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.article{background:var(--card);border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+.article-top{padding:25px;background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(124,58,237,.1));font-size:45px}
+.article-body{padding:23px}
+.article h3{font-size:21px;margin-bottom:8px}
+.article p{color:var(--muted);font-size:14px}
+.read{margin-top:15px;display:inline-flex;color:var(--primary);font-weight:800;font-size:14px;cursor:pointer}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:26px;box-shadow:var(--shadow)}
+.panel h3{font-size:22px;margin-bottom:12px}
+.panel p,.panel li{color:var(--muted);font-size:15px}
+.panel ul{padding-left:20px}
+.quote{border-left:4px solid var(--primary);padding:14px 18px;background:rgba(37,99,235,.06);border-radius:0 14px 14px 0;margin-top:20px;font-weight:700}
+.about{background:linear-gradient(135deg,#172554,#4c1d95);color:white;border-radius:28px;padding:40px}
+.about p{color:#dbe4ff;max-width:750px;margin-top:10px}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.person{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:16px;border-radius:16px}
+.person strong{display:block}
+.person small{color:#cbd5e1}
+.search{display:flex;gap:8px;margin-bottom:22px}
+.search input{flex:1;border:1px solid var(--border);background:var(--card);color:var(--text);padding:13px 15px;border-radius:13px;outline:none}
+footer{padding:35px 0;color:var(--muted);border-top:1px solid var(--border);text-align:center;font-size:13px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal.show{display:flex}
+.modal-box{max-width:650px;width:100%;max-height:85vh;overflow:auto;background:var(--card);border-radius:24px;padding:28px}
+.modal-box h2{margin-bottom:12px}.modal-box p{color:var(--muted);margin-bottom:13px}
+.close{float:right;border:0;background:transparent;color:var(--muted);font-size:25px;cursor:pointer}
+@media(max-width:800px){
+  .menu{position:absolute;left:16px;right:16px;top:74px;display:none;flex-direction:column;align-items:stretch;background:var(--card);padding:12px;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+  .menu.open{display:flex}.menu a{padding:11px 13px}
+  .menu-btn{display:block}.hero{padding:45px 0 35px}.hero-grid,.info{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}.article-grid{grid-template-columns:1fr}.team{grid-template-columns:1fr 1fr}
+  .section{padding:48px 0}.section-head{display:block}.section-head p{margin-top:10px}
+}
+@media(max-width:430px){
+  .container{width:min(100% - 22px,1100px)}h1{font-size:42px}.hero p{font-size:16px}
+  .card,.panel{padding:20px}.about{padding:27px 20px}.actions{gap:5px}.icon-btn,.menu-btn{width:38px;height:38px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#inicio"><span>✦</span> Conexão Cidadã</a>
+    <nav class="menu" id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#temas">Temas</a>
+      <a href="#artigos">Blog</a>
+      <a href="#participacao">Participação</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" id="theme" aria-label="Modo escuro">☾</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">TRABALHO ESCOLAR • CIDADANIA</span>
+      <h1>Conhecimento que <span class="gradient">transforma.</span></h1>
+      <p>Um blog sobre <strong>Cidadania Digital, Difusão do Conhecimento e Soberania Popular</strong> — três temas fundamentais para compreender nossa participação na sociedade.</p>
+    </div>
+    <div class="hero-card">
+      <div class="big-icon">🌎</div>
+      <h3>Você faz parte disso.</h3>
+      <p>Ser cidadão também significa buscar informação, respeitar direitos, participar das decisões e usar a tecnologia de forma consciente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="temas">
+<div class="container">
+  <div class="section-head">
+    <div><div class="eyebrow">Os três pilares</div><h2>Entenda os temas</h2></div>
+    <p>Informação é uma ferramenta para participar melhor da sociedade.</p>
+  </div>
+  <div class="cards">
+    <article class="card">
+      <div class="card-icon">📱</div><h3>Cidadania Digital</h3>
+      <p>É o exercício consciente de direitos e deveres no ambiente digital, incluindo segurança, respeito, privacidade e responsabilidade.</p>
+      <span class="tag">TECNOLOGIA + RESPONSABILIDADE</span>
+    </article>
+    <article class="card">
+      <div class="card-icon">📚</div><h3>Difusão do Conhecimento</h3>
+      <p>É a circulação de informações, ideias e conhecimentos. A internet tornou mais fácil aprender e compartilhar, mas exige atenção às fontes.</p>
+      <span class="tag">INFORMAÇÃO + EDUCAÇÃO</span>
+    </article>
+    <article class="card">
+      <div class="card-icon">🗳️</div><h3>Soberania Popular</h3>
+      <p>É o princípio de que o poder político pertence ao povo, que participa da vida pública por diferentes formas dentro de uma democracia.</p>
+      <span class="tag">DEMOCRACIA + PARTICIPAÇÃO</span>
+    </article>
+  </div>
+</div>
+</section>
+
+<section class="section" id="artigos">
+<div class="container">
+  <div class="section-head">
+    <div><div class="eyebrow">Blog</div><h2>Artigos em destaque</h2></div>
+    <p>Leia conteúdos rápidos para entender como esses assuntos aparecem no nosso dia a dia.</p>
+  </div>
+  <div class="search">
+    <input id="search" type="search" placeholder="🔎 Buscar artigo..." aria-label="Buscar artigo">
+  </div>
+  <div class="article-grid" id="articles">
+    <article class="article" data-title="internet cidadania digital">
+      <div class="article-top">📱</div><div class="article-body">
+        <h3>A internet também é um espaço de cidadania</h3>
+        <p>Comentar, compartilhar e publicar são ações que podem gerar consequências. Cidadania digital envolve respeito, responsabilidade e consciência.</p>
+        <span class="read" data-article="digital">Ler artigo →</span>
+      </div>
+    </article>
+    <article class="article" data-title="fake news desinformação conhecimento">
+      <div class="article-top">🔎</div><div class="article-body">
+        <h3>Como combater a desinformação?</h3>
+        <p>Antes de compartilhar uma informação, vale conferir a fonte, a data, o contexto e se outros veículos confiáveis também confirmam o conteúdo.</p>
+        <span class="read" data-article="info">Ler artigo →</span>
+      </div>
+    </article>
+    <article class="article" data-title="jovens democracia soberania popular">
+      <div class="article-top">🗳️</div><div class="article-body">
+        <h3>O jovem também participa da democracia</h3>
+        <p>A participação cidadã não acontece somente no momento do voto. Debates, projetos, conselhos, movimentos e ações comunitárias também são formas de participação.</p>
+        <span class="read" data-article="democracy">Ler artigo →</span>
+      </div>
+    </article>
+    <article class="article" data-title="privacidade dados segurança">
+      <div class="article-top">🔐</div><div class="article-body">
+        <h3>Privacidade: cuide dos seus dados</h3>
+        <p>Senhas fortes, autenticação em dois fatores e atenção aos links recebidos são hábitos simples que ajudam a proteger a vida digital.</p>
+        <span class="read" data-article="privacy">Ler artigo →</span>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+
+<section class="section" id="participacao">
+<div class="container">
+  <div class="section-head">
+    <div><div class="eyebrow">Na prática</div><h2>Como participar?</h2></div>
+  </div>
+  <div class="info">
+    <div class="panel">
+      <h3>🌐 No ambiente digital</h3>
+      <ul>
+        <li>Verifique informações antes de compartilhar.</li>
+        <li>Respeite outras pessoas e opiniões.</li>
+        <li>Proteja senhas e dados pessoais.</li>
+        <li>Denuncie conteúdos abusivos quando necessário.</li>
+        <li>Use a tecnologia para aprender e colaborar.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>🏛️ Na sociedade</h3>
+      <ul>
+        <li>Informe-se sobre assuntos públicos.</li>
+        <li>Participe de discussões e iniciativas comunitárias.</li>
+        <li>Conheça seus direitos e deveres.</li>
+        <li>Respeite as regras democráticas.</li>
+        <li>Procure fontes confiáveis para formar opiniões.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:20px">
+    <div class="quote">“Uma sociedade mais participativa começa com pessoas bem informadas e conscientes de seu papel.”</div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="sobre">
+<div class="container">
+  <div class="about">
+    <div class="eyebrow" style="color:#a5b4fc">Sobre o trabalho</div>
+    <h2>Conexão Cidadã</h2>
+    <p>Este blog foi desenvolvido como projeto escolar para apresentar, de maneira simples e interativa, conceitos relacionados à cidadania digital, à difusão do conhecimento e à soberania popular.</p>
+    <div class="team">
+      <div class="person"><strong>Isael Araújo</strong><small>Integrante</small></div>
+      <div class="person"><strong>Jerbeson Sousa</strong><small>Integrante</small></div>
+      <div class="person"><strong>Trabalho</strong><small>Cidadania e sociedade</small></div>
+      <div class="person"><strong>Turma</strong><small>Coloque aqui</small></div>
+    </div>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="container">© 2026 Conexão Cidadã • Trabalho escolar • Feito com HTML, CSS e JavaScript</div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="close">×</button>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+    <p id="modalText2"></p>
+  </div>
+</div>
+
+<script>
+const menu=document.getElementById('menu');
+document.getElementById('menuBtn').onclick=()=>menu.classList.toggle('open');
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
+
+const theme=document.getElementById('theme');
+theme.onclick=()=>{
+  document.body.classList.toggle('dark');
+  theme.textContent=document.body.classList.contains('dark')?'☀':'☾';
+  localStorage.setItem('dark',document.body.classList.contains('dark'));
+};
+if(localStorage.getItem('dark')==='true'){document.body.classList.add('dark');theme.textContent='☀'}
+
+const data={
+ digital:{
+  title:'A internet também é um espaço de cidadania',
+  text:'A cidadania digital envolve a maneira como usamos a tecnologia e participamos do ambiente online. Assim como na vida cotidiana, nossas atitudes na internet devem considerar respeito, responsabilidade e direitos.',
+  text2:'Comentários, compartilhamentos e publicações podem alcançar muitas pessoas. Por isso, pensar antes de publicar, respeitar opiniões diferentes e proteger informações pessoais são atitudes importantes.'
+ },
+ info:{
+  title:'Como combater a desinformação?',
+  text:'A velocidade da internet permite que uma informação se espalhe rapidamente, mesmo quando ela está errada ou fora de contexto. Por isso, desenvolver o hábito de verificar informações é essencial.',
+  text2:'Observe quem publicou, confira a data, procure a informação em outras fontes confiáveis e desconfie de títulos muito exagerados. Compartilhar menos e verificar mais ajuda a diminuir a desinformação.'
+ },
+ democracy:{
+  title:'O jovem também participa da democracia',
+  text:'A participação democrática vai além do voto. Jovens podem participar de debates, projetos escolares, iniciativas comunitárias, organizações, campanhas educativas e diferentes espaços de discussão.',
+  text2:'Conhecer problemas da comunidade, buscar informação e apresentar ideias são formas de exercer cidadania. A participação popular fortalece a democracia.'
+ },
+ privacy:{
+  title:'Privacidade: cuide dos seus dados',
+  text:'Dados pessoais fazem parte da nossa vida digital. Nome, fotos, localização, senhas e informações de contas precisam ser tratados com cuidado.',
+  text2:'Use senhas diferentes e fortes, ative a autenticação em dois fatores, evite clicar em links suspeitos e pense antes de publicar informações pessoais. Segurança digital também é cidadania.'
+ }
+};
+const modal=document.getElementById('modal');
+document.querySelectorAll('.read').forEach(btn=>{
+ btn.onclick=()=>{
+  const d=data[btn.dataset.article];
+  document.getElementById('modalTitle').textContent=d.title;
+  document.getElementById('modalText').textContent=d.text;
+  document.getElementById('modalText2').textContent=d.text2;
+  modal.classList.add('show');
+ };
+});
+document.getElementById('close').onclick=()=>modal.classList.remove('show');
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show')};
+
+document.getElementById('search').oninput=e=>{
+ const q=e.target.value.toLowerCase().trim();
+ document.querySelectorAll('#articles .article').forEach(card=>{
+  card.style.display=card.dataset.title.includes(q)?'block':'none';
+ });
+};
+</script>
+</body>
+</html>
